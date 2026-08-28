@@ -249,7 +249,7 @@ function Navbar() {
             />
           </a>
           <div className="flex flex-col items-end gap-0.5 text-right flex-shrink-0">
-            <div className="font-display font-semibold text-[10px] sm:text-xs tracking-wider" style={{ color: NAVY }}>ICICFA &ndash; 2025</div>
+            <div className="font-display font-semibold text-[10px] sm:text-xs tracking-wider" style={{ color: NAVY }}>ICICFA &ndash; 2027</div>
             <div className="text-[9px] sm:text-[10px] tracking-widest font-display" style={{ color: GOLD }}>HYBRID : PHYSICAL &amp; VIRTUAL</div>
             <div className="hidden sm:flex items-center gap-1.5 mt-1">
               {["UGC", "NAAC 'A+'", "AICTE"].map((b) => (
@@ -385,7 +385,7 @@ function HeroSection() {
           className="font-display font-bold mb-4"
           style={{ fontSize: "clamp(2rem, 6vw, 4.5rem)", letterSpacing: "0.1em", color: "#fff", textShadow: "0 2px 24px rgba(10,20,60,0.55)" }}
         >
-          ICICFA<span style={{ color: GOLD }}>–2025</span>
+          ICICFA<span style={{ color: GOLD }}>–2027</span>
         </div>
 
         {/* Full title */}
@@ -517,11 +517,11 @@ function AboutSection() {
           {/* Text */}
           <div>
             <SectionLabel>ABOUT THE CONFERENCE</SectionLabel>
-            <SectionHeading>ICICFA 2025</SectionHeading>
+            <SectionHeading>ICICFA 2027</SectionHeading>
             <div className="mt-6 space-y-4 text-gray-600 leading-relaxed text-sm">
               <p>
                 The <strong className="text-gray-900">International Conference on Intelligent Computing
-                Frameworks for Autonomous AI (ICICFA 2025)</strong> is organized by the School of
+                Frameworks for Autonomous AI (ICICFA 2027)</strong> is organized by the School of
                 Computing Sciences &amp; Engineering, Vels Institute of Science, Technology &amp;
                 Advanced Studies (VISTAS), Chennai.
               </p>
@@ -531,7 +531,7 @@ function AboutSection() {
                 generative models, intelligent reasoning, and adaptive decision-making frameworks.
               </p>
               <p>
-                ICICFA 2025 fosters multidisciplinary dialogue and advances responsible development of
+                ICICFA 2027 fosters multidisciplinary dialogue and advances responsible development of
                 next-generation AI systems. The proceedings will be submitted for indexing in IEEE Xplore
                 and Scopus.
               </p>
@@ -906,7 +906,7 @@ function CallForPapersSection() {
             <SectionLabel>TOPICS OF INTEREST</SectionLabel>
             <SectionHeading>CALL FOR PAPERS</SectionHeading>
             <p className="text-sm text-gray-600 mt-8 mb-6 leading-relaxed">
-              ICICFA 2025 invites original, unpublished research contributions in (but not limited to):
+              ICICFA 2027 invites original, unpublished research contributions in (but not limited to):
             </p>
             <div className="space-y-3">
               {RESEARCH_TRACKS.map((track, i) => (
@@ -1570,7 +1570,7 @@ function Footer() {
           <div>
             <h4 className="font-display text-[10px] tracking-widest text-white mb-4">CONFERENCE INFO</h4>
             <div className="space-y-2 text-xs" style={{ color: "#64748B" }}>
-              <div>Code: <span className="text-white font-semibold">ICICFA-2025</span></div>
+              <div>Code: <span className="text-white font-semibold">ICICFA-2027</span></div>
               <div>Mode: <span className="text-white">Hybrid (Physical &amp; Virtual)</span></div>
               <div>Venue: <span className="text-white">VISTAS, Chennai</span></div>
               <div>Date: <em>Details will be given soon</em></div>
@@ -1589,12 +1589,12 @@ function Footer() {
           className="border-t pt-6 flex flex-wrap items-center justify-between gap-4 text-xs"
           style={{ borderColor: "rgba(255,255,255,0.07)", color: "#475569" }}
         >
-          <span>© 2025 ICICFA — Vels Institute of Science, Technology &amp; Advanced Studies, Chennai. All Rights Reserved.</span>
+          <span>© 2027 ICICFA — Vels Institute of Science, Technology &amp; Advanced Studies, Chennai. All Rights Reserved.</span>
           <span
             className="font-display tracking-[0.2em] text-[10px]"
             style={{ color: GOLD }}
           >
-            ICICFA – 2025
+            ICICFA – 2027
           </span>
         </div>
       </div>
