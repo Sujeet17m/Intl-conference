@@ -127,7 +127,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function SectionHeading({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
   return (
     <h2
-      className={`font-display font-bold text-3xl lg:text-4xl mb-0 ${center ? "text-center" : ""}`}
+      className={`font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-0 ${center ? "text-center" : ""}`}
       style={{ color: NAVY }}
     >
       {children}
@@ -236,35 +236,24 @@ function Navbar() {
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? "shadow-xl" : ""}`}
       style={{ background: NAVY }}
     >
-      {/* Logo bar — shows the full VELS banner image on both desktop and mobile */}
-      <div
-        className="w-full border-b"
-        style={{ borderColor: "#E5E7EB", background: "#fff" }}
-      >
-        <div className="max-w-screen-xl mx-auto px-4 lg:px-8 py-2 flex items-center justify-between gap-4">
-          {/* Banner logo */}
-          <a href="#home" className="flex-1 min-w-0">
+      {/* Logo bar */}
+      <div className="w-full border-b" style={{ borderColor: "#E5E7EB", background: "#fff" }}>
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-4 lg:px-8 py-2 flex items-center justify-between gap-2">
+          {/* Banner logo — shrinks naturally on small screens */}
+          <a href="#home" className="flex-1 min-w-0 max-w-[240px] sm:max-w-none">
             <img
               src="/images/vels-logo-banner.jpg"
               alt="VELS Institute of Science, Technology & Advanced Studies"
-              className="w-auto object-contain"
-              style={{ maxHeight: "80px", maxWidth: "100%" }}
+              className="w-full h-auto object-contain"
+              style={{ maxHeight: "72px" }}
             />
           </a>
-          <div className="flex flex-col items-end gap-1 text-right flex-shrink-0">
-            <div className="font-display font-semibold text-xs tracking-wider" style={{ color: NAVY }}>ICICFA &ndash; 2025</div>
-            <div className="text-[10px] tracking-widest font-display" style={{ color: GOLD }}>
-              HYBRID MODE : PHYSICAL &amp; VIRTUAL
-            </div>
-            <div className="hidden sm:flex items-center gap-2 mt-1">
+          <div className="flex flex-col items-end gap-0.5 text-right flex-shrink-0">
+            <div className="font-display font-semibold text-[10px] sm:text-xs tracking-wider" style={{ color: NAVY }}>ICICFA &ndash; 2025</div>
+            <div className="text-[9px] sm:text-[10px] tracking-widest font-display" style={{ color: GOLD }}>HYBRID : PHYSICAL &amp; VIRTUAL</div>
+            <div className="hidden sm:flex items-center gap-1.5 mt-1">
               {["UGC", "NAAC 'A+'", "AICTE"].map((b) => (
-                <span
-                  key={b}
-                  className="text-[9px] font-display tracking-widest px-2 py-0.5 border"
-                  style={{ borderColor: "rgba(27,46,85,0.3)", color: NAVY }}
-                >
-                  {b}
-                </span>
+                <span key={b} className="text-[8px] font-display tracking-widest px-1.5 py-0.5 border" style={{ borderColor: "rgba(27,46,85,0.3)", color: NAVY }}>{b}</span>
               ))}
             </div>
           </div>
@@ -373,12 +362,12 @@ function HeroSection() {
       <div className="relative z-10 max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col items-center justify-center text-center py-20 min-h-[90vh]">
 
         {/* VELS logo image above title */}
-        <div className="mb-8 p-3 rounded-sm" style={{ background: "rgba(255,255,255,0.22)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.40)", boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}>
+        <div className="mb-6 p-2 sm:p-3 rounded-sm w-full max-w-xs sm:max-w-md mx-auto" style={{ background: "rgba(255,255,255,0.22)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.40)", boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}>
           <img
             src="/images/vels-logo-banner.jpg"
             alt="VELS Institute of Science, Technology & Advanced Studies"
-            className="w-auto object-contain"
-            style={{ maxHeight: "72px", maxWidth: "480px" }}
+            className="w-full h-auto object-contain"
+            style={{ maxHeight: "64px" }}
           />
         </div>
 
@@ -401,14 +390,14 @@ function HeroSection() {
 
         {/* Full title */}
         <p
-          className="mb-3 max-w-4xl leading-snug font-display"
-          style={{ fontSize: "clamp(0.85rem, 1.8vw, 1.15rem)", color: "rgba(255,255,255,0.92)", textShadow: "0 1px 6px rgba(10,20,60,0.4)" }}
+          className="mb-3 max-w-4xl leading-snug font-display px-2"
+          style={{ fontSize: "clamp(0.8rem, 3vw, 1.1rem)", color: "rgba(255,255,255,0.92)", textShadow: "0 1px 6px rgba(10,20,60,0.4)" }}
         >
           An International Conference on
         </p>
         <h1
-          className="font-display font-bold leading-tight mb-6 max-w-4xl"
-          style={{ fontSize: "clamp(1.1rem, 2.4vw, 1.75rem)", color: GOLD_LIGHT, lineHeight: 1.45, textShadow: "0 1px 10px rgba(10,20,60,0.35)" }}
+          className="font-display font-bold leading-tight mb-6 max-w-4xl px-2"
+          style={{ fontSize: "clamp(0.95rem, 3.5vw, 1.75rem)", color: GOLD_LIGHT, lineHeight: 1.5, textShadow: "0 1px 10px rgba(10,20,60,0.35)" }}
         >
           Intelligent Computing Frameworks for Autonomous AI:<br />
           Generative Models, Reasoning, and Adaptive Decision Making
@@ -421,35 +410,35 @@ function HeroSection() {
           <div className="w-20 h-px" style={{ background: `linear-gradient(to left, transparent, ${GOLD})` }} />
         </div>
 
-        {/* Meta row */}
-        <div className="flex flex-wrap justify-center gap-6 text-xs font-display tracking-wider mb-10" style={{ color: "rgba(255,255,255,0.88)" }}>
+        {/* Meta row — stacks on mobile */}
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-5 text-xs font-display tracking-wider mb-8 px-4" style={{ color: "rgba(255,255,255,0.88)" }}>
           {[
             { icon: "📅", text: "DATE: DETAILS WILL BE GIVEN SOON" },
             { icon: "📍", text: "VISTAS, VELACHERY, CHENNAI" },
             { icon: "🏛", text: "PROCEEDINGS: IEEE / SCOPUS" },
           ].map((m, i) => (
-            <div key={i} className="flex items-center gap-2" style={{ textShadow: "0 1px 4px rgba(10,20,60,0.4)" }}>
+            <div key={i} className="flex items-center justify-center gap-2" style={{ textShadow: "0 1px 4px rgba(10,20,60,0.4)" }}>
               <span style={{ color: GOLD }}>{m.icon}</span>
               {m.text}
             </div>
           ))}
         </div>
 
-        {/* CTAs */}
-        <div className="flex flex-wrap justify-center gap-4">
+        {/* CTAs — stack full-width on mobile */}
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 w-full max-w-xs sm:max-w-none mx-auto">
           <a
             href="#registration"
-            className="px-8 py-3 font-display tracking-widest text-xs text-white transition-all duration-200 shadow-lg"
+            className="w-full sm:w-auto text-center px-8 py-3 font-display tracking-widest text-xs text-white transition-all duration-200 shadow-lg"
             style={{ background: GOLD, boxShadow: `0 4px 20px rgba(184,149,42,0.4)` }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "#9A7A20"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = GOLD; e.currentTarget.style.transform = "translateY(0)"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "#9A7A20"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = GOLD; }}
           >
             REGISTER NOW
           </a>
           <a
             href="#cfp"
-            className="px-8 py-3 font-display tracking-widest text-xs border transition-all duration-200"
-            style={{ borderColor: GOLD, color: GOLD_LIGHT, backdropFilter: "blur(4px)", background: "rgba(184,149,42,0.08)" }}
+            className="w-full sm:w-auto text-center px-8 py-3 font-display tracking-widest text-xs border transition-all duration-200"
+            style={{ borderColor: GOLD, color: GOLD_LIGHT, background: "rgba(184,149,42,0.08)" }}
             onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(184,149,42,0.22)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(184,149,42,0.08)"; }}
           >
@@ -457,8 +446,8 @@ function HeroSection() {
           </a>
           <a
             href="#"
-            className="px-8 py-3 font-display tracking-widest text-xs border transition-all duration-200 flex items-center gap-2"
-            style={{ borderColor: "rgba(200,220,255,0.35)", color: "rgba(200,220,255,0.85)", backdropFilter: "blur(4px)" }}
+            className="w-full sm:w-auto text-center px-8 py-3 font-display tracking-widest text-xs border transition-all duration-200 flex items-center justify-center gap-2"
+            style={{ borderColor: "rgba(200,220,255,0.35)", color: "rgba(200,220,255,0.85)" }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(200,220,255,0.7)"; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(200,220,255,0.35)"; e.currentTarget.style.color = "rgba(200,220,255,0.85)"; }}
           >
@@ -509,14 +498,14 @@ function PartnersStrip() {
 
 function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-12 sm:py-20 bg-white">
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Text */}
           <div>
             <SectionLabel>ABOUT THE CONFERENCE</SectionLabel>
             <SectionHeading>ICICFA 2025</SectionHeading>
-            <div className="mt-8 space-y-4 text-gray-600 leading-relaxed text-sm">
+            <div className="mt-6 space-y-4 text-gray-600 leading-relaxed text-sm">
               <p>
                 The <strong className="text-gray-900">International Conference on Intelligent Computing
                 Frameworks for Autonomous AI (ICICFA 2025)</strong> is organized by the School of
@@ -536,11 +525,11 @@ function AboutSection() {
             </div>
 
             {/* Accreditation badges */}
-            <div className="flex flex-wrap gap-3 mt-8">
+            <div className="flex flex-wrap gap-2 sm:gap-3 mt-6">
               {["IEEE", "Scopus", "UGC", "NAAC 'A+'", "Web of Science"].map((b) => (
                 <div
                   key={b}
-                  className="px-4 py-2 border text-xs font-display tracking-widest"
+                  className="px-3 sm:px-4 py-2 border text-xs font-display tracking-widest"
                   style={{ borderColor: GOLD, color: NAVY }}
                 >
                   {b}
@@ -549,10 +538,10 @@ function AboutSection() {
             </div>
 
             {/* CTA */}
-            <div className="flex gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <a
                 href="#"
-                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-display tracking-widest text-white transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-display tracking-widest text-white transition-all"
                 style={{ background: NAVY }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = NAVY_DARK)}
                 onMouseLeave={(e) => (e.currentTarget.style.background = NAVY)}
@@ -564,7 +553,7 @@ function AboutSection() {
               </a>
               <a
                 href="#cfp"
-                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-display tracking-widest border transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-display tracking-widest border transition-all"
                 style={{ borderColor: NAVY, color: NAVY }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = NAVY; e.currentTarget.style.color = "#fff"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = NAVY; }}
@@ -575,8 +564,8 @@ function AboutSection() {
           </div>
 
           {/* Stats + image */}
-          <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-5">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {[
                 { n: "8+", label: "Keynote Speakers" },
                 { n: "12", label: "Research Tracks" },
@@ -585,23 +574,23 @@ function AboutSection() {
               ].map((s) => (
                 <div
                   key={s.label}
-                  className="p-6 text-center"
+                  className="p-4 sm:p-6 text-center"
                   style={{ borderTop: `3px solid ${GOLD}`, background: "#F8F9FC" }}
                 >
-                  <div className="font-display font-bold text-3xl mb-1" style={{ color: NAVY }}>{s.n}</div>
+                  <div className="font-display font-bold text-2xl sm:text-3xl mb-1" style={{ color: NAVY }}>{s.n}</div>
                   <div className="text-xs tracking-wider text-gray-500 font-display">{s.label}</div>
                 </div>
               ))}
             </div>
 
-            <div className="relative overflow-hidden rounded-none" style={{ height: "200px" }}>
+            <div className="relative overflow-hidden rounded-none" style={{ height: "180px" }}>
               <img
                 src="https://images.unsplash.com/photo-1680084521816-cc1ad0433ceb?w=800&h=400&fit=crop&auto=format"
                 alt="Vels University campus"
                 className="w-full h-full object-cover"
               />
               <div
-                className="absolute bottom-0 left-0 right-0 px-5 py-3"
+                className="absolute bottom-0 left-0 right-0 px-4 py-3"
                 style={{ background: "rgba(15,27,56,0.88)" }}
               >
                 <div className="font-display text-xs tracking-wider text-white">
@@ -735,18 +724,18 @@ function SpeakersSection() {
 
 function AboutVelsSection() {
   return (
-    <section className="py-20" style={{ background: NAVY }}>
+    <section className="py-12 sm:py-20" style={{ background: NAVY }}>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div>
             <div className="text-xs tracking-[0.25em] font-display mb-3" style={{ color: GOLD }}>
               HOST INSTITUTION
             </div>
-            <h2 className="font-display font-bold text-3xl lg:text-4xl text-white mb-0">
+            <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-0">
               ABOUT VISTAS
               <div className="mt-3 h-[3px] w-14" style={{ background: GOLD }} />
             </h2>
-            <div className="mt-8 space-y-4 text-sm leading-relaxed" style={{ color: "#CBD5E1" }}>
+            <div className="mt-6 space-y-4 text-sm leading-relaxed" style={{ color: "#CBD5E1" }}>
               <p>
                 Vels Institute of Science, Technology &amp; Advanced Studies (VISTAS) is a Deemed-to-be
                 University established under Section 3 of the UGC Act, 1956. Located in the heart of
@@ -768,7 +757,7 @@ function AboutVelsSection() {
           </div>
 
           {/* Highlights grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 mt-8 lg:mt-0">
             {[
               { icon: "🏛", label: "Established", value: "1992" },
               { icon: "🎓", label: "Status", value: "Deemed University" },
