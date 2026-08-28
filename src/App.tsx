@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import velsLogoBannerSrc from "./assets/vels-logo-banner.jpg";
+import velsShieldSrc from "./assets/vels-shield.jpg";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -178,7 +180,7 @@ function VelsLogo({ compact = false }: { compact?: boolean }) {
   return (
     <div className="flex items-center gap-2">
       <img
-        src="/vels-shield.jpg"
+        src={velsShieldSrc}
         alt="VELS University Crest"
         className={`${compact ? "h-10" : "h-12"} w-auto object-contain flex-shrink-0`}
         style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))" }}
@@ -201,7 +203,7 @@ function VelsLogo({ compact = false }: { compact?: boolean }) {
 function VelsLogoBanner() {
   return (
     <img
-      src="/vels-logo-banner.jpg"
+      src={velsLogoBannerSrc}
       alt="VELS Institute of Science, Technology & Advanced Studies"
       className="h-full w-auto object-contain"
       style={{ maxHeight: "80px" }}
@@ -245,7 +247,7 @@ function Navbar() {
           {/* Banner logo */}
           <a href="#home" className="flex-1 min-w-0">
             <img
-              src="/vels-logo-banner.jpg"
+              src={velsLogoBannerSrc}
               alt="VELS Institute of Science, Technology & Advanced Studies"
               className="w-auto object-contain"
               style={{ maxHeight: "80px", maxWidth: "100%" }}
@@ -375,7 +377,7 @@ function HeroSection() {
         {/* VELS logo image above title */}
         <div className="mb-8 p-3 rounded-sm" style={{ background: "rgba(255,255,255,0.22)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.40)", boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}>
           <img
-            src="/vels-logo-banner.jpg"
+            src={velsLogoBannerSrc}
             alt="VELS Institute of Science, Technology & Advanced Studies"
             className="w-auto object-contain"
             style={{ maxHeight: "72px", maxWidth: "480px" }}
@@ -1541,7 +1543,7 @@ function Footer() {
           <div className="md:col-span-2">
             {/* White-background pill to display logo clearly on dark footer */}
             <div className="inline-block px-3 py-2 rounded-sm mb-4" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}>
-              <img src="/vels-shield.jpg" alt="VELS Crest" className="h-12 w-auto object-contain" />
+              <img src={velsShieldSrc} alt="VELS Crest" className="h-12 w-auto object-contain" />
             </div>
             <div className="font-display font-bold text-white text-xs tracking-wider mb-1">VELS INSTITUTE OF SCIENCE,</div>
             <div className="font-display font-bold text-white text-xs tracking-wider">TECHNOLOGY &amp; ADVANCED STUDIES</div>
