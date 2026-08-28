@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --color-navy: #1B2E55;
+  --color-navy-dark: #0F1B38;
+  --color-navy-light: #2D4A7A;
+  --color-gold: #B8952A;
+  --color-gold-light: #D4AF4A;
+  --color-gold-pale: #F5EDD0;
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-body: 'Open Sans', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', system-ui, sans-serif;
+  color: #1a1a2e;
+  background: #ffffff;
+}
+
+/* Hide scrollbar by default, show on hover/scroll */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: #c1c8d4 transparent;
+}
+
+.font-display {
+  font-family: 'Cinzel', Georgia, serif;
+}
+
+/* Gold underline accent for section titles */
+.section-title-accent::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: #B8952A;
+  margin: 12px auto 0;
+}
+
+.section-title-accent-left::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: #B8952A;
+  margin: 12px 0 0;
+}
+
+/* Sticky nav glass */
+.nav-glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Speaker card hover */
+.speaker-card:hover .speaker-overlay {
+  opacity: 1;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.25s ease;
+}
+
+/* Scrolling ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Provides comprehensive information and registration for an international AI conference hosted by Vels College, featuring expert speakers and event details.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
