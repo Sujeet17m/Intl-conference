@@ -350,10 +350,10 @@ function HeroSection() {
         className="absolute inset-0"
         style={{ background: "radial-gradient(ellipse 60% 50% at 15% 20%, rgba(184,149,42,0.10) 0%, transparent 70%)" }}
       />
-      {/* Bottom fade — dissolves into white below so there's no harsh cut-off */}
+      {/* Bottom fade — short, clean dissolve into white */}
       <div
         className="absolute bottom-0 left-0 right-0"
-        style={{ height: "18%", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.85))" }}
+        style={{ height: "12%", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.95))" }}
       />
 
       {/* Top gold rule */}
@@ -459,10 +459,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style={{ opacity: 0.6 }}>
-        <div className="w-px h-8" style={{ background: `linear-gradient(to bottom, ${GOLD}, transparent)` }} />
-        <div className="w-1.5 h-1.5 rotate-45" style={{ background: GOLD }} />
-      </div>
+
     </section>
   );
 }
@@ -471,23 +468,39 @@ function HeroSection() {
 
 function PartnersStrip() {
   const partners = [
-    "IEEE Technical Sponsor",
-    "Scopus Indexed Proceedings",
-    "UGC Recognised",
-    "NAAC 'A+' Institution",
-    "AICTE Approved",
-    "Anna University Affiliated",
+    { label: "IEEE", sub: "Technical Sponsor" },
+    { label: "Scopus", sub: "Indexed Proceedings" },
+    { label: "UGC", sub: "Recognised" },
+    { label: "NAAC 'A+'", sub: "Accredited" },
+    { label: "AICTE", sub: "Approved" },
+    { label: "Anna University", sub: "Affiliated" },
   ];
   return (
-    <div className="border-y py-5" style={{ borderColor: "#E5E7EB", background: "#fff" }}>
-      <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
-        <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
-          {partners.map((p, i) => (
-            <div key={i} className="flex items-center gap-2 text-xs font-display tracking-wider" style={{ color: NAVY }}>
-              <span style={{ color: GOLD }}>◆</span>
-              {p}
+    <div style={{ background: "#F8F9FC", borderTop: `3px solid ${GOLD}`, borderBottom: "1px solid #E5E7EB" }}>
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-8 py-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+          {/* Label */}
+          <div className="flex-shrink-0 flex items-center gap-3">
+            <div className="w-1 h-8 rounded-full" style={{ background: GOLD }} />
+            <div className="font-display text-[10px] tracking-[0.2em] font-semibold" style={{ color: NAVY }}>
+              RECOGNISED<br />BY
             </div>
-          ))}
+          </div>
+          {/* Divider — hidden on mobile */}
+          <div className="hidden sm:block w-px self-stretch" style={{ background: "#E5E7EB" }} />
+          {/* Badges */}
+          <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-2 sm:gap-3 flex-1">
+            {partners.map((p, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center text-center px-3 py-2 border"
+                style={{ borderColor: "#E5E7EB", background: "#fff", minWidth: "80px" }}
+              >
+                <div className="font-display font-bold text-[11px] sm:text-xs leading-none" style={{ color: NAVY }}>{p.label}</div>
+                <div className="text-[9px] sm:text-[10px] tracking-wider mt-0.5" style={{ color: GOLD }}>{p.sub}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
