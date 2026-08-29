@@ -248,9 +248,9 @@ function Navbar() {
               style={{ maxHeight: "72px" }}
             />
           </a>
-          <div className="flex flex-col items-end gap-0.5 text-right flex-shrink-0">
+          <div className="flex flex-col items-end gap-0.5 text-right flex-shrink-0 max-w-[120px] sm:max-w-none">
             <div className="font-display font-semibold text-[10px] sm:text-xs tracking-wider" style={{ color: NAVY }}>ICICFA &ndash; 2027</div>
-            <div className="text-[9px] sm:text-[10px] tracking-widest font-display" style={{ color: GOLD }}>HYBRID : PHYSICAL &amp; VIRTUAL</div>
+            <div className="text-[8px] sm:text-[10px] tracking-widest font-display leading-tight" style={{ color: GOLD }}>HYBRID : PHYSICAL &amp; VIRTUAL</div>
             <div className="hidden sm:flex items-center gap-1.5 mt-1">
               {["UGC", "NAAC 'A+'", "AICTE"].map((b) => (
                 <span key={b} className="text-[8px] font-display tracking-widest px-1.5 py-0.5 border" style={{ borderColor: "rgba(27,46,85,0.3)", color: NAVY }}>{b}</span>
@@ -696,7 +696,7 @@ function SpeakerCard({ name, affiliation, country, initials, dark = false }: {
 
 function SpeakersSection() {
   return (
-    <section id="speakers" className="py-20 bg-white">
+    <section id="speakers" className="py-12 sm:py-20 bg-white">
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-14">
           <SectionLabel>DISTINGUISHED FACULTY</SectionLabel>
@@ -835,7 +835,7 @@ function ScheduleSection() {
   };
 
   return (
-    <section id="schedule" className="py-20" style={{ background: "#F0F4FA" }}>
+    <section id="schedule" className="py-12 sm:py-20" style={{ background: "#F0F4FA" }}>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <SectionLabel>PROGRAMME</SectionLabel>
@@ -850,7 +850,7 @@ function ScheduleSection() {
             <button
               key={i}
               onClick={() => setDay(i)}
-              className="px-10 py-3 font-display text-xs tracking-widest border transition-all duration-150"
+              className="px-6 sm:px-10 py-3 font-display text-xs tracking-widest border transition-all duration-150"
               style={
                 day === i
                   ? { background: NAVY, borderColor: NAVY, color: "#fff" }
@@ -878,8 +878,8 @@ function ScheduleSection() {
               {/* Type strip */}
               <div className="w-1 flex-shrink-0" style={{ background: item.type === "keynote" ? GOLD : item.type === "ceremony" ? "#F59E0B" : item.type === "break" ? "#D1D5DB" : item.type === "panel" ? "#8B5CF6" : item.type === "workshop" ? "#10B981" : item.type === "networking" ? "#F43F5E" : "#3B82F6" }} />
               {/* Content */}
-              <div className="flex-1 px-5 py-4 flex items-center justify-between gap-4">
-                <span className="font-semibold text-sm" style={{ color: NAVY }}>{item.title}</span>
+              <div className="flex-1 min-w-0 px-3 sm:px-5 py-4 flex items-center justify-between gap-2 sm:gap-4">
+                <span className="flex-1 min-w-0 font-semibold text-xs sm:text-sm break-words" style={{ color: NAVY }}>{item.title}</span>
                 <span
                   className="flex-shrink-0 text-[9px] font-display tracking-widest px-2 py-1"
                   style={{ background: typeStyle[item.type].bg, color: typeStyle[item.type].text }}
@@ -899,7 +899,7 @@ function ScheduleSection() {
 
 function CallForPapersSection() {
   return (
-    <section id="cfp" className="py-20 bg-white">
+    <section id="cfp" className="py-12 sm:py-20 bg-white">
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
@@ -969,7 +969,7 @@ function CallForPapersSection() {
 
 function PublicationsSection() {
   return (
-    <section id="publications" className="py-20" style={{ background: "#F0F4FA" }}>
+    <section id="publications" className="py-12 sm:py-20" style={{ background: "#F0F4FA" }}>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <SectionLabel>PROCEEDINGS</SectionLabel>
@@ -1022,7 +1022,7 @@ function PublicationsSection() {
 
 function GuidelinesSection() {
   return (
-    <section id="guidelines" className="py-20 bg-white">
+    <section id="guidelines" className="py-12 sm:py-20 bg-white">
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <SectionLabel>FOR AUTHORS</SectionLabel>
@@ -1095,7 +1095,7 @@ function GuidelinesSection() {
 
 function SponsorshipSection() {
   return (
-    <section id="sponsorship" className="py-20" style={{ background: "#F0F4FA" }}>
+    <section id="sponsorship" className="py-12 sm:py-20" style={{ background: "#F0F4FA" }}>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <SectionLabel>PARTNER WITH US</SectionLabel>
@@ -1163,11 +1163,11 @@ function RegistrationSection() {
   ];
 
   return (
-    <section id="registration" className="py-20" style={{ background: NAVY }}>
+    <section id="registration" className="py-12 sm:py-20" style={{ background: NAVY }}>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <div className="text-xs tracking-[0.25em] font-display mb-3" style={{ color: GOLD }}>PARTICIPATION</div>
-          <h2 className="font-display font-bold text-3xl lg:text-4xl text-white mb-0 text-center">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-0 text-center">
             REGISTRATION
             <div className="mt-3 h-[3px] w-14 mx-auto" style={{ background: GOLD }} />
           </h2>
@@ -1182,7 +1182,7 @@ function RegistrationSection() {
             <thead>
               <tr style={{ background: GOLD }}>
                 {["CATEGORY", "EARLY BIRD", "REGULAR", "FOREIGN (USD)"].map((h) => (
-                  <th key={h} className="px-5 py-4 text-left font-display tracking-wider text-white text-[11px]">{h}</th>
+                  <th key={h} className="px-3 sm:px-5 py-3 sm:py-4 text-left font-display tracking-wider text-white text-[10px] sm:text-[11px] whitespace-nowrap">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1193,10 +1193,10 @@ function RegistrationSection() {
                   className="border-b transition-colors hover:bg-white/5"
                   style={{ borderColor: "rgba(255,255,255,0.08)", background: i % 2 === 0 ? "rgba(255,255,255,0.03)" : "transparent" }}
                 >
-                  <td className="px-5 py-4 font-semibold text-white text-xs">{row.cat}</td>
-                  <td className="px-5 py-4 text-center text-xs italic" style={{ color: "#93C5FD" }}>{row.early}</td>
-                  <td className="px-5 py-4 text-center text-xs italic" style={{ color: "#93C5FD" }}>{row.regular}</td>
-                  <td className="px-5 py-4 text-center text-xs italic" style={{ color: "#93C5FD" }}>{row.foreign}</td>
+                  <td className="px-3 sm:px-5 py-3 sm:py-4 font-semibold text-white text-xs whitespace-nowrap">{row.cat}</td>
+                  <td className="px-3 sm:px-5 py-3 sm:py-4 text-center text-xs italic whitespace-nowrap" style={{ color: "#93C5FD" }}>{row.early}</td>
+                  <td className="px-3 sm:px-5 py-3 sm:py-4 text-center text-xs italic whitespace-nowrap" style={{ color: "#93C5FD" }}>{row.regular}</td>
+                  <td className="px-3 sm:px-5 py-3 sm:py-4 text-center text-xs italic whitespace-nowrap" style={{ color: "#93C5FD" }}>{row.foreign}</td>
                 </tr>
               ))}
             </tbody>
@@ -1219,16 +1219,16 @@ function RegistrationSection() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-center"
+                className="flex flex-col sm:flex-row"
                 style={{ borderBottom: i < 5 ? "1px solid rgba(184,149,42,0.2)" : "none" }}
               >
                 <div
-                  className="w-48 flex-shrink-0 px-5 py-3 text-xs font-display tracking-wider"
+                  className="w-full sm:w-48 flex-shrink-0 px-5 py-2 sm:py-3 text-xs font-display tracking-wider"
                   style={{ background: "rgba(184,149,42,0.12)", color: GOLD }}
                 >
                   {item.label.toUpperCase()}
                 </div>
-                <div className="px-5 py-3 text-xs italic" style={{ color: "#CBD5E1" }}>{item.value}</div>
+                <div className="px-5 py-2 sm:py-3 text-xs italic break-words" style={{ color: "#CBD5E1" }}>{item.value}</div>
               </div>
             ))}
           </div>
@@ -1260,7 +1260,7 @@ function RegistrationSection() {
 
 function CommitteeSection() {
   return (
-    <section id="committee" className="py-20 bg-white">
+    <section id="committee" className="py-12 sm:py-20 bg-white">
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <SectionLabel>LEADERSHIP</SectionLabel>
@@ -1319,7 +1319,7 @@ function CommitteeSection() {
 
 function AboutChennaiSection() {
   return (
-    <section className="py-20" style={{ background: "#F0F4FA" }}>
+    <section className="py-12 sm:py-20" style={{ background: "#F0F4FA" }}>
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <SectionLabel>DESTINATION</SectionLabel>
@@ -1383,7 +1383,7 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-12 sm:py-20 bg-white">
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-12">
           <SectionLabel>GET IN TOUCH</SectionLabel>
