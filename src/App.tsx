@@ -139,6 +139,60 @@ function SectionHeading({ children, center = false }: { children: React.ReactNod
   );
 }
 
+// ─── Announcement Banner ─────────────────────────────────────────────────────
+
+function AnnouncementBanner() {
+  const [visible, setVisible] = useState(true);
+  if (!visible) return null;
+  return (
+    <div
+      className="w-full relative overflow-hidden"
+      style={{
+        background: "linear-gradient(135deg, #0d2952 0%, #1a3a6b 50%, #0d2952 100%)",
+        borderBottom: `3px solid ${GOLD}`,
+      }}
+    >
+      {/* decorative gold rule top */}
+      <div className="h-[2px] w-full" style={{ background: `linear-gradient(90deg, transparent, ${GOLD}, #F0C040, ${GOLD}, transparent)` }} />
+
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-8 py-3 flex items-center justify-between gap-4">
+        {/* Icon + text */}
+        <div className="flex items-center gap-4 flex-1 min-w-0">
+          {/* IEEE badge pill */}
+          <div
+            className="hidden sm:flex flex-shrink-0 items-center gap-1.5 px-3 py-1.5 text-[10px] font-display font-bold tracking-widest border whitespace-nowrap"
+            style={{ borderColor: GOLD, color: GOLD, background: "rgba(184,149,42,0.12)" }}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            IEEE &amp; SCOPUS
+          </div>
+
+          <p
+            className="text-xs sm:text-[13px] font-display tracking-wide text-white leading-relaxed"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}
+          >
+            <span className="hidden sm:inline">📢 </span>
+            AFTER-CONFERENCE PROCEEDING OF{" "}
+            <strong style={{ color: GOLD_LIGHT }}>ICICFA – 2027</strong>{" "}
+            WILL BE SUBMITTED FOR INCLUSION TO{" "}
+            <strong style={{ color: GOLD_LIGHT }}>IEEE XPLORE &amp; SCOPUS</strong>
+          </p>
+        </div>
+
+        {/* Dismiss */}
+        <button
+          onClick={() => setVisible(false)}
+          className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full transition-all hover:bg-white/10"
+          style={{ color: "rgba(255,255,255,0.5)" }}
+          aria-label="Dismiss announcement"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ─── Marquee Ticker ───────────────────────────────────────────────────────────
 
 function Ticker() {
@@ -211,6 +265,11 @@ function VelsLogoBanner() {
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 
+// Blue values that match the sample site's clean single-bar navbar
+const NAV_BLUE = "#1565C0";      // rich royal blue — main bar
+const NAV_BLUE_DARK = "#0D47A1"; // darker for hover / mobile
+const NAV_BLUE_ACTIVE = "#1E88E5"; // lighter for active item bg
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -233,36 +292,45 @@ function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? "shadow-xl" : ""}`}
-      style={{ background: NAVY }}
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? "shadow-2xl" : "shadow-md"}`}
+      style={{ background: NAV_BLUE }}
     >
-      {/* Logo bar */}
-      <div className="w-full border-b" style={{ borderColor: "#E5E7EB", background: "#fff" }}>
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-4 lg:px-8 py-2 flex items-center justify-between gap-2">
-          {/* Banner logo — shrinks naturally on small screens */}
-          <a href="#home" className="flex-1 min-w-0 max-w-[240px] sm:max-w-none">
-            <img
-              src="/images/vels-logo-banner.jpg"
-              alt="VELS Institute of Science, Technology & Advanced Studies"
-              className="w-full h-auto object-contain"
-              style={{ maxHeight: "72px" }}
-            />
-          </a>
-          <div className="flex flex-col items-end gap-0.5 text-right flex-shrink-0 max-w-[120px] sm:max-w-none">
-            <div className="font-display font-semibold text-[10px] sm:text-xs tracking-wider" style={{ color: NAVY }}>ICICFA &ndash; 2027</div>
-            <div className="text-[8px] sm:text-[10px] tracking-widest font-display leading-tight" style={{ color: GOLD }}>HYBRID : PHYSICAL &amp; VIRTUAL</div>
-            <div className="hidden sm:flex items-center gap-1.5 mt-1">
-              {["UGC", "NAAC 'A+'", "AICTE"].map((b) => (
-                <span key={b} className="text-[8px] font-display tracking-widest px-1.5 py-0.5 border" style={{ borderColor: "rgba(27,46,85,0.3)", color: NAVY }}>{b}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* ── Single unified bar ── */}
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-6 flex items-center justify-between" style={{ height: "56px" }}>
 
-      {/* Nav links */}
-      <div className="max-w-screen-xl mx-auto px-4 lg:px-8 flex items-center justify-between h-10">
-        <nav className="hidden lg:flex items-stretch h-full gap-0">
+        {/* LEFT: logo + acronym */}
+        <div className="flex items-center gap-3 flex-shrink-0">
+          {/* small VELS shield */}
+          <a href="#home" className="flex items-center gap-2.5 group">
+            <div
+              className="flex-shrink-0 rounded-sm overflow-hidden"
+              style={{ background: "rgba(255,255,255,0.15)", padding: "3px" }}
+            >
+              <img
+                src="/images/vels-shield.jpg"
+                alt="VISTAS"
+                className="h-8 w-auto object-contain block"
+              />
+            </div>
+            <div className="leading-none">
+              <span
+                className="block font-display font-bold tracking-widest text-white"
+                style={{ fontSize: "1.15rem", letterSpacing: "0.08em" }}
+              >
+                ICICFA
+              </span>
+              <span
+                className="block font-display tracking-[0.18em] text-[10px]"
+                style={{ color: "rgba(255,255,255,0.70)" }}
+              >
+                2027
+              </span>
+            </div>
+          </a>
+        </div>
+
+        {/* CENTRE/RIGHT: nav links (desktop) */}
+        <nav className="hidden lg:flex items-stretch h-full">
           {NAV_LINKS.map((link) => {
             const active = activeSection === link.href.slice(1);
             const isRegister = link.label === "Registration";
@@ -271,59 +339,84 @@ function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="flex items-center px-3 text-[10px] font-display tracking-wider h-full border-b-2 transition-all duration-150"
+                className="flex items-center px-3 xl:px-4 text-[11px] font-display tracking-wider h-full border-b-2 transition-all duration-150 whitespace-nowrap"
                 style={{
-                  borderBottomColor: active ? GOLD : "transparent",
-                  color: active ? GOLD_LIGHT : "#CBD5E1",
+                  borderBottomColor: active ? "#FDD835" : "transparent",
+                  color: active ? "#FDD835" : "rgba(255,255,255,0.85)",
+                  background: active ? "rgba(255,255,255,0.08)" : "transparent",
                 }}
-                onMouseEnter={(e) => { if (!active) e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = "#CBD5E1"; }}
+                onMouseEnter={(e) => {
+                  if (!active) {
+                    e.currentTarget.style.color = "#fff";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.10)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!active) {
+                    e.currentTarget.style.color = "rgba(255,255,255,0.85)";
+                    e.currentTarget.style.background = "transparent";
+                  }
+                }}
               >
-                {link.label.toUpperCase()}
+                {link.label}
               </a>
             );
           })}
         </nav>
 
-        {/* Register CTA */}
+        {/* RIGHT: Register CTA */}
         <a
           href="#registration"
-          className="hidden lg:flex items-center px-5 h-7 text-[10px] font-display tracking-widest transition-all duration-150"
-          style={{ background: GOLD, color: "#fff" }}
+          className="hidden lg:flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-display tracking-widest transition-all duration-150 flex-shrink-0 ml-2"
+          style={{ background: GOLD, color: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.25)" }}
           onMouseEnter={(e) => (e.currentTarget.style.background = "#9A7A20")}
           onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
         >
-          REGISTER NOW
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Register
         </a>
 
-        {/* Mobile toggle */}
+        {/* Mobile hamburger */}
         <button
-          className="lg:hidden text-white p-2"
+          className="lg:hidden flex items-center justify-center w-9 h-9 rounded transition-colors"
+          style={{ color: "#fff", background: "rgba(255,255,255,0.1)" }}
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {mobileOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M3 12h18M3 6h18M3 18h18" />}
           </svg>
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* ── Mobile dropdown ── */}
       {mobileOpen && (
-        <div className="lg:hidden border-t" style={{ borderColor: "#2D4A7A", background: NAVY_DARK }}>
+        <div
+          className="lg:hidden border-t"
+          style={{ borderColor: "rgba(255,255,255,0.15)", background: NAV_BLUE_DARK }}
+        >
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-between px-5 py-3 text-xs font-display tracking-wider border-b text-blue-100 hover:text-white transition-all"
-              style={{ borderColor: "#2D4A7A" }}
+              className="flex items-center justify-between px-5 py-3.5 text-[11px] font-display tracking-wider border-b transition-all hover:bg-white/10"
+              style={{ borderColor: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.88)" }}
             >
-              {link.label.toUpperCase()}
+              {link.label}
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </a>
           ))}
+          <a
+            href="#registration"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center justify-center gap-2 mx-4 my-3 py-2.5 text-xs font-display tracking-widest text-white transition-all"
+            style={{ background: GOLD }}
+          >
+            REGISTER NOW
+          </a>
         </div>
       )}
     </header>
@@ -801,38 +894,58 @@ function AboutVelsSection() {
 // ─── Schedule ─────────────────────────────────────────────────────────────────
 
 function ScheduleSection() {
-  const [day, setDay] = useState(0);
+  // 0 = Instructions, 1 = Day 1, 2 = Day 2
+  const [tab, setTab] = useState(1);
 
   const sessions = [
+    // Day 1
     [
-      { time: "TBA", title: "Inauguration Ceremony & Welcome Address", type: "ceremony" },
-      { time: "TBA", title: "Keynote I — International Speaker", type: "keynote" },
-      { time: "TBA", title: "Session I: Generative Models & LLMs", type: "session" },
-      { time: "TBA", title: "Lunch Break", type: "break" },
-      { time: "TBA", title: "Session II: Autonomous Decision Systems", type: "session" },
-      { time: "TBA", title: "Panel Discussion: Future of Autonomous AI", type: "panel" },
-      { time: "TBA", title: "Cultural Evening & Networking Dinner", type: "networking" },
+      { time: "08:30 – 09:30", title: "Inauguration Ceremony & Welcome Address", mode: "Offline (Physical)", type: "ceremony" },
+      { time: "09:30 – 10:30", title: "Keynote/Invited Talk (Online Mode via Google Meet)", mode: "Online – Google Meet", type: "keynote" },
+      { time: "10:30 – 11:00", title: "Tea / Refreshment Break", mode: "Offline", type: "break" },
+      { time: "11:00 – 13:00", title: "Session I: Generative AI & Large Language Models", mode: "Hybrid", type: "session" },
+      { time: "13:00 – 14:00", title: "Lunch Break", mode: "Offline", type: "break" },
+      { time: "14:00 – 16:00", title: "Session II: Autonomous Decision Systems", mode: "Hybrid", type: "session" },
+      { time: "16:00 – 17:00", title: "Panel Discussion: Future of Autonomous AI", mode: "Hybrid", type: "panel" },
+      { time: "19:00 – 21:00", title: "Cultural Evening & Networking Dinner", mode: "Offline", type: "networking" },
     ],
+    // Day 2
     [
-      { time: "TBA", title: "Keynote II — Indian Expert", type: "keynote" },
-      { time: "TBA", title: "Session III: Adaptive Reasoning Frameworks", type: "session" },
-      { time: "TBA", title: "Session IV: AI Ethics & Trustworthy Systems", type: "session" },
-      { time: "TBA", title: "Lunch Break", type: "break" },
-      { time: "TBA", title: "Workshop / Hands-on Tutorial", type: "workshop" },
-      { time: "TBA", title: "Best Paper Award Ceremony", type: "ceremony" },
-      { time: "TBA", title: "Valedictory Function", type: "ceremony" },
+      { time: "09:00 – 10:30", title: "Keynote II — Indian Expert", mode: "Hybrid", type: "keynote" },
+      { time: "10:30 – 13:00", title: "Session III: Adaptive Reasoning Frameworks", mode: "Hybrid", type: "session" },
+      { time: "13:00 – 14:00", title: "Lunch Break", mode: "Offline", type: "break" },
+      { time: "14:00 – 16:00", title: "Session IV: AI Ethics & Trustworthy Systems", mode: "Hybrid", type: "session" },
+      { time: "16:00 – 17:00", title: "Workshop / Hands-on Tutorial", mode: "Hybrid", type: "workshop" },
+      { time: "17:00 – 17:30", title: "Best Paper Award Ceremony", mode: "Hybrid", type: "ceremony" },
+      { time: "17:30 – 18:00", title: "Valedictory Function & Closing", mode: "Offline", type: "ceremony" },
     ],
   ];
 
-  const typeStyle: Record<string, { bg: string; text: string }> = {
+  const typeAccent: Record<string, string> = {
+    ceremony: "#F59E0B",
+    keynote: GOLD,
+    session: "#3B82F6",
+    break: "#9CA3AF",
+    panel: "#8B5CF6",
+    workshop: "#10B981",
+    networking: "#F43F5E",
+  };
+
+  const typeBadge: Record<string, { bg: string; text: string }> = {
     ceremony: { bg: "#FEF3C7", text: "#92400E" },
-    keynote: { bg: "#EFF6FF", text: NAVY },
-    session: { bg: "#F0F9FF", text: "#0C4A6E" },
-    break: { bg: "#F9FAFB", text: "#6B7280" },
+    keynote: { bg: "#FDF6E3", text: "#7A5C0A" },
+    session: { bg: "#EFF6FF", text: "#1E3A8A" },
+    break: { bg: "#F3F4F6", text: "#4B5563" },
     panel: { bg: "#F5F3FF", text: "#5B21B6" },
     workshop: { bg: "#ECFDF5", text: "#065F46" },
     networking: { bg: "#FFF1F2", text: "#9F1239" },
   };
+
+  const tabs = [
+    { label: "Instructions", id: 0 },
+    { label: "Day 1", id: 1 },
+    { label: "Day 2", id: 2 },
+  ];
 
   return (
     <section id="schedule" className="py-12 sm:py-20" style={{ background: "#F0F4FA" }}>
@@ -841,55 +954,113 @@ function ScheduleSection() {
           <SectionLabel>PROGRAMME</SectionLabel>
           <SectionHeading center>CONFERENCE SCHEDULE</SectionHeading>
           <p className="text-xs text-gray-400 mt-4 italic font-display tracking-wider">
-            Detailed schedule with exact timings will be given soon
+            Detailed schedule with exact timings will be announced soon
           </p>
         </div>
 
-        <div className="flex justify-center gap-2 mb-10">
-          {["Day 1", "Day 2"].map((d, i) => (
+        {/* Tab bar — matches sample site style */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {tabs.map(({ label, id }) => (
             <button
-              key={i}
-              onClick={() => setDay(i)}
-              className="px-6 sm:px-10 py-3 font-display text-xs tracking-widest border transition-all duration-150"
+              key={id}
+              onClick={() => setTab(id)}
+              className="px-6 sm:px-10 py-3 font-display text-xs tracking-widest border-2 transition-all duration-150 rounded-sm"
               style={
-                day === i
-                  ? { background: NAVY, borderColor: NAVY, color: "#fff" }
-                  : { background: "#fff", borderColor: NAVY, color: NAVY }
+                tab === id
+                  ? { background: NAVY, borderColor: NAVY, color: "#fff", boxShadow: "0 4px 12px rgba(27,46,85,0.25)" }
+                  : { background: "#fff", borderColor: "#C8D4E8", color: NAVY }
               }
             >
-              {d.toUpperCase()}
+              {label.toUpperCase()}
             </button>
           ))}
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-1">
-          {sessions[day].map((item, i) => (
-            <div
-              key={i}
-              className="flex items-stretch gap-0 bg-white border border-gray-100 overflow-hidden hover:shadow-sm transition-shadow"
-            >
-              {/* Time col */}
-              <div
-                className="w-20 flex-shrink-0 flex flex-col items-center justify-center text-center px-2 py-4"
-                style={{ background: NAVY, color: GOLD }}
-              >
-                <span className="font-display text-[10px] tracking-wider">{item.time}</span>
-              </div>
-              {/* Type strip */}
-              <div className="w-1 flex-shrink-0" style={{ background: item.type === "keynote" ? GOLD : item.type === "ceremony" ? "#F59E0B" : item.type === "break" ? "#D1D5DB" : item.type === "panel" ? "#8B5CF6" : item.type === "workshop" ? "#10B981" : item.type === "networking" ? "#F43F5E" : "#3B82F6" }} />
-              {/* Content */}
-              <div className="flex-1 min-w-0 px-3 sm:px-5 py-4 flex items-center justify-between gap-2 sm:gap-4">
-                <span className="flex-1 min-w-0 font-semibold text-xs sm:text-sm break-words" style={{ color: NAVY }}>{item.title}</span>
-                <span
-                  className="flex-shrink-0 text-[9px] font-display tracking-widest px-2 py-1"
-                  style={{ background: typeStyle[item.type].bg, color: typeStyle[item.type].text }}
-                >
-                  {item.type.toUpperCase()}
-                </span>
-              </div>
+        {/* ── Instructions Panel ── */}
+        {tab === 0 && (
+          <div className="max-w-3xl mx-auto bg-white border border-gray-200 overflow-hidden shadow-sm">
+            <div className="px-6 py-4 border-b" style={{ background: NAVY, borderColor: NAVY }}>
+              <h3 className="font-display font-bold text-sm tracking-wider text-white">
+                Instructions for Participants
+              </h3>
             </div>
-          ))}
-        </div>
+            <ul className="divide-y divide-gray-100">
+              {[
+                { icon: "📋", text: "All presenters must register before the conference date. Unregistered papers will not be included in the proceedings." },
+                { icon: "🎤", text: "Physical presentations: Report at the respective session hall at least 15 minutes prior to your slot." },
+                { icon: "💻", text: "Online presentations: Join the Google Meet link at least 10 minutes before your session. The link will be shared via registered email." },
+                { icon: "📄", text: "Presentation time: 10 minutes + 5 minutes Q&A per paper. Please adhere strictly to the time limit." },
+                { icon: "🖥", text: "Slides must be in 16:9 format (PowerPoint or PDF). Upload your slides to the session chair at least 30 minutes before your session." },
+                { icon: "📡", text: "Keynote and invited talks will be conducted in Online Mode via Google Meet. Attendance link will be shared via email and displayed on this page." },
+                { icon: "🏅", text: "Best Paper Awards will be given in each track. Authors of nominated papers will be notified in advance." },
+                { icon: "📸", text: "Photography and recording of sessions is permitted for personal use only. Do not share session recordings publicly." },
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-4 px-6 py-4 hover:bg-blue-50/40 transition-colors">
+                  <span className="text-xl flex-shrink-0 mt-0.5">{item.icon}</span>
+                  <span className="text-sm text-gray-700 leading-relaxed">{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* ── Day 1 / Day 2 Session Cards ── */}
+        {(tab === 1 || tab === 2) && (
+          <div className="max-w-3xl mx-auto space-y-2">
+            {sessions[tab - 1].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-stretch overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                style={{ background: "#fff", border: "1px solid #E5E7EB" }}
+              >
+                {/* Left accent strip */}
+                <div className="w-1.5 flex-shrink-0" style={{ background: typeAccent[item.type] }} />
+
+                {/* Time column */}
+                <div
+                  className="w-28 sm:w-36 flex-shrink-0 flex flex-col items-center justify-center text-center px-2 py-4"
+                  style={{ background: NAVY }}
+                >
+                  <span className="font-display text-[10px] sm:text-[11px] tracking-wider" style={{ color: GOLD }}>
+                    {item.time}
+                  </span>
+                  <span className="text-[8px] mt-1 tracking-widest text-blue-300 font-display">
+                    IST
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0 px-4 sm:px-5 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <span className="font-semibold text-xs sm:text-sm leading-snug block" style={{ color: NAVY }}>
+                      {item.title}
+                    </span>
+                    <span className="text-[10px] mt-1 block" style={{ color: "#6B7280" }}>
+                      {item.mode}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <span
+                      className="text-[9px] font-display tracking-widest px-2.5 py-1 rounded-sm"
+                      style={{ background: typeBadge[item.type].bg, color: typeBadge[item.type].text }}
+                    >
+                      {item.type.toUpperCase()}
+                    </span>
+                    {(item.type === "keynote" || item.type === "session" || item.type === "panel" || item.type === "workshop") && (
+                      <button
+                        className="text-[10px] font-display tracking-widest px-3 py-1.5 text-white transition-all hover:opacity-90"
+                        style={{ background: "#16A34A" }}
+                        onClick={() => alert("Session link will be shared via email. Please check your registered email closer to the conference date.")}
+                      >
+                        Join
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -1428,26 +1599,45 @@ function ContactSection() {
               ))}
             </div>
 
-            {/* Map placeholder */}
+            {/* Google Maps Embed */}
             <div
-              className="overflow-hidden flex items-center justify-center border"
-              style={{ height: "160px", background: "#F0F4FA", borderColor: "#E5E7EB" }}
+              className="overflow-hidden border shadow-sm"
+              style={{ borderColor: "#E5E7EB", borderRadius: "2px" }}
             >
-              <a
-                href="https://maps.google.com/?q=Vels+University+Chennai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 text-xs font-display tracking-wider transition-all"
-                style={{ color: NAVY }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = GOLD)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = NAVY)}
+              {/* Label bar */}
+              <div
+                className="px-3 py-2 flex items-center gap-2"
+                style={{ background: NAVY }}
               >
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
-                VIEW ON GOOGLE MAPS
-              </a>
+                <span className="text-[10px] font-display tracking-widest text-white">
+                  VISTAS — VELACHERY, CHENNAI
+                </span>
+                <a
+                  href="https://maps.app.goo.gl/VISTAS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-auto text-[9px] font-display tracking-widest transition-colors"
+                  style={{ color: GOLD }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = GOLD_LIGHT)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = GOLD)}
+                >
+                  Open ↗
+                </a>
+              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.223385770827!2d80.15728127507622!3d12.957552787356489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525e43ecc3adf7%3A0xa0ef3f153468699c!2sVels%20Institute%20of%20Science%2C%20Technology%20%26%20Advanced%20Studies%20(VISTAS)!5e0!3m2!1sen!2sin!4v1788042887306!5m2!1sen!2sin"
+                width="100%"
+                height="260"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="VISTAS Location — Google Maps"
+              />
             </div>
           </div>
 
@@ -1607,6 +1797,7 @@ function Footer() {
 export default function App() {
   return (
     <div className="min-h-full flex flex-col">
+      <AnnouncementBanner />
       <Ticker />
       <Navbar />
       <main className="flex-1">
